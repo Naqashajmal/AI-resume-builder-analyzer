@@ -10,9 +10,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/genai": "^1.23.0",
+    "@google/generative-ai": "^0.24.1",
     "@types/node": "^22.13.11",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "docxtemplater": "^3.66.6",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "node-fetch": "^3.3.2",
+    "openai": "^6.2.0",
+    "pizzip": "^3.2.0"
   }
 }

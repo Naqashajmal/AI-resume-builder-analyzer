@@ -1,12 +1,8 @@
-/* ======================================
-   AI Resume Creator & Analyzer - Styles
-   Modern, Clean, Responsive Design
-   ====================================== */
 
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Reset & Base Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -61,6 +57,9 @@ header h1 {
 .settings-panel {
     background: #f8f9fa;
     border-bottom: 1px solid #e0e0e0;
+}
+.settings-panel {
+    display: none;
 }
 
 .settings-toggle {

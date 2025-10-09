@@ -1,8 +1,3 @@
-// ======================================
-// AI Resume Creator & Analyzer - Frontend
-// ======================================
-
-// Load saved settings and check API status when page loads
 window.addEventListener('DOMContentLoaded', () => {
     loadSettings();
     checkAPIStatus();
@@ -33,7 +28,9 @@ function saveSettings() {
 
 function loadSettings() {
     const aiModel = localStorage.getItem('aiModel') || 'openai';
-    document.getElementById('aiModel').value = aiModel;
+    if (document.getElementById('aiModel')) {
+        document.getElementById('aiModel').value = aiModel;
+    }
 }
 
 // Check which API keys are configured on the server
@@ -43,6 +40,7 @@ async function checkAPIStatus() {
         const status = await response.json();
         
         const statusDiv = document.getElementById('apiStatus');
+        if (!statusDiv) return;
         let html = '<div class="status-indicators">';
         
         html += `<div class="status-item ${status.openai ? 'configured' : 'not-configured'}">
@@ -247,14 +245,13 @@ function createAnalysisSection(title, content, icon) {
 // ======================================
 
 async function callAI(prompt, callback) {
-    const aiModel = localStorage.getItem('aiModel') || 'openai';
+    // Always use OpenAI model
+    const endpoint = '/api/gemini';
 
     // Show loading spinner
     document.getElementById('loadingSpinner').classList.add('active');
 
     try {
-        const endpoint = aiModel === 'openai' ? '/api/openai' : '/api/gemini';
-        
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
@@ -273,9 +270,10 @@ async function callAI(prompt, callback) {
         if (!response.ok) {
             throw new Error(data.error || 'API call failed');
         }
+         const formattedText = formatResumeText(data.result);
 
         // Execute callback with result
-        callback(data.result);
+        callback(formattedText);
 
     } catch (error) {
         // Hide loading spinner
@@ -284,6 +282,14 @@ async function callAI(prompt, callback) {
         console.error('AI API Error:', error);
         showMessage(`Error: ${error.message}`, 'error');
     }
+}
+function formatResumeText(mdText) {
+    return mdText
+        .replace(/^### (.*)$/gm, (_, h) => `\n${h.toUpperCase()}\n${'-'.repeat(h.length)}\n`) // Headings → uppercase + underline
+        .replace(/^\*\*([^\*]+)\*\*/gm, (_, b) => b.toUpperCase()) // Bold → uppercase
+        .replace(/^\* (.*)$/gm, (_, li) => `• ${li}`) // Bullets
+        .replace(/^---$/gm, '--------------------') // Horizontal line
+        .replace(/^\n+/, ''); // Remove extra leading newlines
 }
 
 // ======================================

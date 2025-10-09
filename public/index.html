@@ -9,15 +9,16 @@
     <link rel="stylesheet" href="/css/style.css">
     
     <!-- html2pdf library for PDF generation -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-    <!-- Main Container -->
+   
     <div class="container">
         
-        <!-- Header -->
+       
         <header>
-            <h1>✨ AI Resume Creator & Analyzer</h1>
+            <h1> AI Resume Creator & Analyzer</h1>
             <p class="subtitle">Create professional resumes and get AI-powered insights</p>
         </header>
 
@@ -35,8 +36,7 @@
                 </div>
                 <div id="apiStatus" class="api-status"></div>
                 <div class="info-box">
-                    <strong>🔐 How to Add Your API Keys</strong>
-                    <p class="info-highlight">⚠️ Both APIs are currently not configured. Follow these steps:</p>
+                    <strong> How to Add Your API Keys</strong>
                     
                     <div class="step-box">
                         <strong>Step 1:</strong> Get Your API Key
@@ -47,16 +47,7 @@
                     </div>
 
                     <div class="step-box">
-                        <strong>Step 2:</strong> Add to Replit Secrets
-                        <ol>
-                            <li>Look at the <strong>left sidebar</strong> in Replit</li>
-                            <li>Click the <strong>"Tools"</strong> button (bottom left)</li>
-                            <li>Click <strong>🔒 "Secrets"</strong> tab</li>
-                            <li>Click <strong>"+ New Secret"</strong> button</li>
-                            <li>Enter key name: <code>OPENAI_API_KEY</code> or <code>GEMINI_API_KEY</code></li>
-                            <li>Paste your API key in the value field</li>
-                            <li>Click <strong>"Save"</strong></li>
-                        </ol>
+                       
                     </div>
 
                     <div class="step-box">
@@ -92,7 +83,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input type="tel" id="phone" placeholder="+1 234 567 8900">
+                        <input type="tel" id="phone" placeholder="+92 3421231231">
                     </div>
                 </div>
 
@@ -121,7 +112,7 @@
                     <textarea id="achievements" rows="3" placeholder="Awards, certifications, notable accomplishments..."></textarea>
                 </div>
 
-                <button type="submit" class="btn-primary">🤖 Generate AI Resume</button>
+                <button type="submit" class="btn-primary">Generate AI Resume</button>
             </form>
 
             <!-- Resume Output -->
