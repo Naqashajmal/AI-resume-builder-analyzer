@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Creator & Analyzer</title>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- html2pdf library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Header -->
+        <header>
+            <h1>✨ AI Resume Creator & Analyzer</h1>
+            <p class="subtitle">Create professional resumes and get AI-powered insights</p>
+        </header>
+
+        <!-- Settings Panel (Collapsible) -->
+        <div class="settings-panel" id="settingsPanel">
+            <button class="settings-toggle" onclick="toggleSettings()">⚙️ Settings</button>
+            <div class="settings-content" id="settingsContent">
+                <h3>AI Model Selection</h3>
+                <div class="form-group">
+                    <label for="aiModel">Choose AI Model:</label>
+                    <select id="aiModel">
+                        <option value="openai">OpenAI GPT-3.5</option>
+                        <option value="gemini">Google Gemini</option>
+                    </select>
+                </div>
+                <div id="apiStatus" class="api-status"></div>
+                <div class="info-box">
+                    <strong>🔐 Secure API Key Management</strong>
+                    <p>API keys are stored securely as environment secrets in Replit (never in browser).</p>
+                    <p>To configure your API keys:</p>
+                    <ol>
+                        <li>Click the <strong>🔒 Secrets</strong> tab in Replit (Tools panel)</li>
+                        <li>Add <code>OPENAI_API_KEY</code> or <code>GEMINI_API_KEY</code></li>
+                        <li>Paste your API key value and save</li>
+                        <li>Restart the server to apply changes</li>
+                    </ol>
+                </div>
+                <button class="btn-save" onclick="saveSettings()">💾 Save Model Preference</button>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('create')">📝 Create Resume</button>
+            <button class="tab-btn" onclick="switchTab('analyze')">🔍 Analyze Resume</button>
+        </div>
+
+        <!-- Create Resume Tab -->
+        <div id="createTab" class="tab-content active">
+            <h2>Create Your Resume</h2>
+            <form id="resumeForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" placeholder="+1 234 567 8900">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="objective">Professional Objective</label>
+                    <textarea id="objective" rows="3" placeholder="Brief career objective or summary..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="education">Education</label>
+                    <textarea id="education" rows="3" placeholder="Degree, University, Year..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Work Experience</label>
+                    <textarea id="experience" rows="4" placeholder="Job Title, Company, Duration, Responsibilities..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="skills">Skills</label>
+                    <textarea id="skills" rows="3" placeholder="JavaScript, Python, Project Management..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="achievements">Achievements</label>
+                    <textarea id="achievements" rows="3" placeholder="Awards, certifications, notable accomplishments..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">🤖 Generate AI Resume</button>
+            </form>
+
+            <!-- Resume Output -->
+            <div id="resumeOutput" class="output-box" style="display: none;">
+                <div class="output-header">
+                    <h3>Generated Resume</h3>
+                    <button class="btn-download" onclick="downloadPDF()">📥 Download PDF</button>
+                </div>
+                <div id="resumeContent" class="resume-content"></div>
+            </div>
+        </div>
+
+        <!-- Analyze Resume Tab -->
+        <div id="analyzeTab" class="tab-content">
+            <h2>Analyze Your Resume</h2>
+            <div class="form-group">
+                <label for="resumeText">Paste Your Resume Text</label>
+                <textarea id="resumeText" rows="10" placeholder="Paste your resume text here..."></textarea>
+            </div>
+            <button class="btn-primary" onclick="analyzeResume()">🔍 Analyze Resume</button>
+
+            <!-- Analysis Output -->
+            <div id="analysisOutput" class="output-box" style="display: none;">
+                <h3>Analysis Results</h3>
+                <div id="analysisContent"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            Made with ❤️ by Naqash Malik
+        </footer>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="spinner-overlay">
+        <div class="spinner"></div>
+        <p>AI is working its magic... ✨</p>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="/js/app.js"></script>
+</body>
+</html>
