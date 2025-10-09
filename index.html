@@ -35,15 +35,36 @@
                 </div>
                 <div id="apiStatus" class="api-status"></div>
                 <div class="info-box">
-                    <strong>🔐 Secure API Key Management</strong>
-                    <p>API keys are stored securely as environment secrets in Replit (never in browser).</p>
-                    <p>To configure your API keys:</p>
-                    <ol>
-                        <li>Click the <strong>🔒 Secrets</strong> tab in Replit (Tools panel)</li>
-                        <li>Add <code>OPENAI_API_KEY</code> or <code>GEMINI_API_KEY</code></li>
-                        <li>Paste your API key value and save</li>
-                        <li>Restart the server to apply changes</li>
-                    </ol>
+                    <strong>🔐 How to Add Your API Keys</strong>
+                    <p class="info-highlight">⚠️ Both APIs are currently not configured. Follow these steps:</p>
+                    
+                    <div class="step-box">
+                        <strong>Step 1:</strong> Get Your API Key
+                        <ul>
+                            <li><strong>OpenAI:</strong> Visit <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a></li>
+                            <li><strong>Gemini:</strong> Visit <a href="https://makersuite.google.com/app/apikey" target="_blank">makersuite.google.com/app/apikey</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="step-box">
+                        <strong>Step 2:</strong> Add to Replit Secrets
+                        <ol>
+                            <li>Look at the <strong>left sidebar</strong> in Replit</li>
+                            <li>Click the <strong>"Tools"</strong> button (bottom left)</li>
+                            <li>Click <strong>🔒 "Secrets"</strong> tab</li>
+                            <li>Click <strong>"+ New Secret"</strong> button</li>
+                            <li>Enter key name: <code>OPENAI_API_KEY</code> or <code>GEMINI_API_KEY</code></li>
+                            <li>Paste your API key in the value field</li>
+                            <li>Click <strong>"Save"</strong></li>
+                        </ol>
+                    </div>
+
+                    <div class="step-box">
+                        <strong>Step 3:</strong> Restart Server
+                        <p>The server will auto-restart, or click "Run" button to restart manually.</p>
+                    </div>
+
+                    <p class="security-note">🔒 <em>Your API keys are stored server-side as environment variables and never exposed to the browser.</em></p>
                 </div>
                 <button class="btn-save" onclick="saveSettings()">💾 Save Model Preference</button>
             </div>
